@@ -50,8 +50,8 @@ const AdminPanel = ({ user }) => {
         const token = localStorage.getItem('token');
 
         const [usersRes, matchesRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/users', { headers: { 'x-auth-token': token } }),
-          axios.get('http://localhost:5000/api/matches', { headers: { 'x-auth-token': token } })
+          axios.get('https://info-sport.onrender.com/api/users', { headers: { 'x-auth-token': token } }),
+          axios.get('https://info-sport.onrender.com/api/matches', { headers: { 'x-auth-token': token } })
         ]);
 
         setUsers(usersRes.data || []);
@@ -85,9 +85,9 @@ const AdminPanel = ({ user }) => {
         format: newMatch.format
       };
 
-      await axios.post('http://localhost:5000/api/matches', payload, { headers: { 'x-auth-token': token } });
+      await axios.post('https://info-sport.onrender.com/api/matches', payload, { headers: { 'x-auth-token': token } });
 
-      const res = await axios.get('http://localhost:5000/api/matches', { headers: { 'x-auth-token': token } });
+      const res = await axios.get('https://info-sport.onrender.com/api/matches', { headers: { 'x-auth-token': token } });
       setMatches(res.data || []);
       setNewMatch(defaultMatch);
     } catch (err) {
@@ -103,9 +103,9 @@ const AdminPanel = ({ user }) => {
       setGeneratingMatch(matchId);
       const token = localStorage.getItem('token');
 
-      await axios.post(`http://localhost:5000/api/matches/${matchId}/generate-teams`, {}, { headers: { 'x-auth-token': token } });
+      await axios.post(`https://info-sport.onrender.com/api/matches/${matchId}/generate-teams`, {}, { headers: { 'x-auth-token': token } });
 
-      const res = await axios.get('http://localhost:5000/api/matches', { headers: { 'x-auth-token': token } });
+      const res = await axios.get('https://info-sport.onrender.com/api/matches', { headers: { 'x-auth-token': token } });
       setMatches(res.data || []);
     } catch (err) {
       console.error(err);
@@ -119,12 +119,12 @@ const AdminPanel = ({ user }) => {
     try {
       const token = localStorage.getItem('token');
       await axios.patch(
-        `http://localhost:5000/api/matches/${matchId}/status`,
+        `https://info-sport.onrender.com/api/matches/${matchId}/status`,
         { status: nextStatus },
         { headers: { 'x-auth-token': token } }
       );
 
-      const res = await axios.get('http://localhost:5000/api/matches', { headers: { 'x-auth-token': token } });
+      const res = await axios.get('https://info-sport.onrender.com/api/matches', { headers: { 'x-auth-token': token } });
       setMatches(res.data || []);
     } catch (err) {
       console.error(err);
@@ -178,8 +178,8 @@ const AdminPanel = ({ user }) => {
                       position: newUser.position,
                       rating: Number(newUser.rating || 50)
                     };
-                    await axios.post('http://localhost:5000/api/users', payload, { headers: { 'x-auth-token': token } });
-                    const res = await axios.get('http://localhost:5000/api/users', { headers: { 'x-auth-token': token } });
+                    await axios.post('https://info-sport.onrender.com/api/users', payload, { headers: { 'x-auth-token': token } });
+                    const res = await axios.get('https://info-sport.onrender.com/api/users', { headers: { 'x-auth-token': token } });
                     setUsers(res.data || []);
                     setNewUser(defaultUser);
                     alert('Utilisateur créé');

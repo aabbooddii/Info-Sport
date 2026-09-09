@@ -26,7 +26,7 @@ const Dashboard = ({ user }) => {
         const token = localStorage.getItem('token');
 
         const res = await axios.get(
-          'http://localhost:5000/api/matches',
+          'https://info-sport.onrender.com/api/matches',
           {
             headers: {
               'x-auth-token': token

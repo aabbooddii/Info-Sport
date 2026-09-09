@@ -46,7 +46,7 @@ const MatchView = ({ user }) => {
       const token = localStorage.getItem('token');
 
       const res = await axios.get(
-        `http://localhost:5000/api/matches/${id}`,
+        `https://info-sport.onrender.com/api/matches/${id}`,
         {
           headers: {
             'x-auth-token': token,
@@ -67,7 +67,7 @@ const MatchView = ({ user }) => {
   const fetchManOfMatch = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/matches/${id}/man-of-match`, {
+      const res = await axios.get(`https://info-sport.onrender.com/api/matches/${id}/man-of-match`, {
         headers: { 'x-auth-token': token },
       });
 
@@ -120,7 +120,7 @@ const MatchView = ({ user }) => {
       const token = localStorage.getItem('token');
 
       await axios.post(
-        `http://localhost:5000/api/matches/${id}/rsvp`,
+        `https://info-sport.onrender.com/api/matches/${id}/rsvp`,
         { status },
         {
           headers: {
@@ -322,7 +322,7 @@ const MatchView = ({ user }) => {
       const token = localStorage.getItem('token');
 
       await axios.patch(
-        `http://localhost:5000/api/matches/${id}/my-goals`,
+        `https://info-sport.onrender.com/api/matches/${id}/my-goals`,
         { goals: Number.parseInt(goalInput, 10) || 0 },
         {
           headers: {
@@ -348,7 +348,7 @@ const MatchView = ({ user }) => {
       const token = localStorage.getItem('token');
 
       await axios.patch(
-        `http://localhost:5000/api/matches/${id}/confirm-goals`,
+        `https://info-sport.onrender.com/api/matches/${id}/confirm-goals`,
         {},
         {
           headers: {
@@ -372,7 +372,7 @@ const MatchView = ({ user }) => {
       const token = localStorage.getItem('token');
 
       await axios.patch(
-        `http://localhost:5000/api/matches/${id}/admin-note`,
+        `https://info-sport.onrender.com/api/matches/${id}/admin-note`,
         {
           generalRating: Number(adminRatingInput),
           adminNote: adminNoteInput,
@@ -396,7 +396,7 @@ const MatchView = ({ user }) => {
     try {
       const token = localStorage.getItem('token');
       await axios.patch(
-        `http://localhost:5000/api/matches/${id}/status`,
+        `https://info-sport.onrender.com/api/matches/${id}/status`,
         { status: nextStatus },
         { headers: { 'x-auth-token': token } }
       );
@@ -419,7 +419,7 @@ const MatchView = ({ user }) => {
       const token = localStorage.getItem('token');
 
       await axios.patch(
-        `http://localhost:5000/api/matches/${id}/participants/${participantId}/evaluate`,
+        `https://info-sport.onrender.com/api/matches/${id}/participants/${participantId}/evaluate`,
         {
           rating: Number(draft.rating),
           note: draft.note,
@@ -445,7 +445,7 @@ const MatchView = ({ user }) => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/matches/${id}/man-of-match/vote`,
+        `https://info-sport.onrender.com/api/matches/${id}/man-of-match/vote`,
         { votedParticipantId: voteSelection },
         { headers: { 'x-auth-token': token } }
       );
@@ -463,7 +463,7 @@ const MatchView = ({ user }) => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/matches/${id}/participants/${participantId}/notation`,
+        `https://info-sport.onrender.com/api/matches/${id}/participants/${participantId}/notation`,
         { rating: Number(draft.rating), comment: draft.comment },
         { headers: { 'x-auth-token': token } }
       );
@@ -775,7 +775,7 @@ const MatchView = ({ user }) => {
                               const val = parseInt(document.getElementById(`admin-goals-${participant.id}`).value, 10) || 0;
                               try {
                                 const token = localStorage.getItem('token');
-                                await axios.patch(`http://localhost:5000/api/matches/${id}/participants/${participant.id}/goals`, { goals: val, confirm: true }, { headers: { 'x-auth-token': token } });
+                                await axios.patch(`https://info-sport.onrender.com/api/matches/${id}/participants/${participant.id}/goals`, { goals: val, confirm: true }, { headers: { 'x-auth-token': token } });
                                 await fetchMatch();
                               } catch (err) {
                                 console.error(err);
